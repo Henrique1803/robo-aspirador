@@ -3,24 +3,23 @@
 #include <string>
 #include <sstream>
 
-class XMLReader {
+class LeitorXML {
 public:
-    XMLReader(std::string _filename) {
-        filename = _filename;
+    LeitorXML(std::string _nomeArquivo) {
+        nomeArquivo = _nomeArquivo;
         xmlData = "";
-        
     }
 
-    void readFile() {
+    void lerArquivo() {
         std::string info;
-        std::ifstream input(filename);
+        std::ifstream input(nomeArquivo);
         if (input.is_open()) {
             while (!input.eof()) {
                 std::getline(input, info);
                 xmlData += info + "\n";
             }
         } else {
-                std::cerr << "Failed to open file: " << filename << std::endl;
+                std::cerr << "Erro ao abrir o arquivo: " << nomeArquivo << std::endl;
         }
     }
 
@@ -29,6 +28,6 @@ public:
     }
 
 private:
-    std::string filename;
+    std::string nomeArquivo;
     std::string xmlData;
 };
