@@ -1,2 +1,2 @@
 # robo-aspirador
-Programa para verificar a valida de um arquivo xml e definir região a ser limpada por um robô usando as estruturas de dados pilha e fila.
+Este projeto consiste na utilização de estruturas lineares e aplicação de conceitos de pilha e fila para o processamento de arquivos XML contendo matrizes binárias que representam cenários de ação de um robô aspirador.
