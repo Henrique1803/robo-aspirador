@@ -12,7 +12,8 @@ public:
         largura = _largura;
         xRobo = _xRobo;
         yRobo = _yRobo;
-
+        quantidade_de_1s = 0;
+        
         // Alocando dinamicamente a matriz
         matriz = new int*[_altura];
         for (int i = 0; i < _altura; ++i) {
@@ -28,16 +29,14 @@ public:
         }
     }
 
-    /*// Destrutor (está aqui somente para utilizar como algoritmo base para desalocar a memória no main)
-    // Esse código deve ser removido após ter feito o algoritmo necessário no main
+    // Destrutor que desaloca a memória
     ~Cenario() {
         // Liberando a memória alocada para a matriz
-        std::cout << "destrutor chamado\n";
         for (int i = 0; i < altura; ++i) {
             delete[] matriz[i];
         }
         delete[] matriz;
-    }*/
+    }
 
     std::string getNome() const {
         return nome;
@@ -63,20 +62,17 @@ public:
         return matriz;
     }
 
-    // Método toString para imprimir todos os dados do cenário, caso seja necessário
+    void incrementa_qtd_1s() {
+        quantidade_de_1s++;
+    }
+
+    int getQuantidadeDe1s() const {
+        return quantidade_de_1s;
+    }
+
+    // Método toString para retornar os dados do cenário para impressão
     std::string toString() {
-        std::string result = "Nome: " + nome + "\n";
-        result += "Altura: " + std::to_string(altura) + "\n";
-        result += "Largura: " + std::to_string(largura) + "\n";
-        result += "Posição do Robô (x, y): (" + std::to_string(xRobo) + ", " + std::to_string(yRobo) + ")\n";
-        result += "Matriz:\n";
-        for (int i = 0; i < altura; ++i) {
-            for (int j = 0; j < largura; ++j) {
-                result += std::to_string(matriz[i][j]) + " ";
-            }
-            result += "\n";
-        }
-        return result;
+        return nome + " " + std::to_string(getQuantidadeDe1s()) + "\n";
     }
 
 private:
@@ -86,4 +82,5 @@ private:
     int xRobo;
     int yRobo;
     int** matriz;
+    int quantidade_de_1s;
 };

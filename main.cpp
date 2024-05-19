@@ -27,26 +27,12 @@ int main() {
         return 1;
     }
 
-    // -------------------------------------------- Somente para testes ---------------------------------------------------------------
-    // Instancia um ControladorAreaRobo e extrai os cenários do conteúdo do XML
+    // Instancia um ControladorAreaRobo que extrai os cenários do conteúdo do XML
+    // e conta a quantidade de 1s de cada cenário
     ControladorAreaRobo controladorAreaRobo = ControladorAreaRobo(leitor.getConteudoXML());
-    // Imprime os atributos de cada cenário
-    for (Cenario cenario : controladorAreaRobo.getCenarios()) {
-        std::cout << cenario.toString() << std::endl;
-    }
-    // ------------------------------------------ Fim Somente para testes -------------------------------------------------------------
-
-
-
-
-    // ATENÇÂO!!!! ESSE CÓDIGO É UTILIZADO PARA DESALOCAR A MEMÓRIA ALOCADA PELAS MATRIZES DE CADA CENÁRIO
-    // É necessário deixá-lo no final do main
-    for (Cenario cenario : controladorAreaRobo.getCenarios()) {
-        // Liberando a memória alocada para a matriz de cada cenário
-        for (int i = 0; i < cenario.getAltura(); ++i) {
-            delete[] cenario.getMatriz()[i];
-        }
-        delete[] cenario.getMatriz();
+    // Imprime as informações de cada cenário
+    for (Cenario* cenario : controladorAreaRobo.getCenarios()) {
+        std::cout << cenario->toString();
     }
 
     return 0;
